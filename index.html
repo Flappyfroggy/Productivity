@@ -12,7 +12,7 @@
 <style>
     body {
         font-family: 'Indie Flower';
-        background-color: #e77e7e;
+        background-color: #ecb6b6;
         margin: 0;
         padding: 0;
         font-size: 25px;
@@ -21,37 +21,49 @@
         margin-left: 20px;
     }
     
-    h1 {
-        color: #523b3b;
-        font-family: Pacifico;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 50px;
-    }
-    
     .tasklist {
         list-style-type: none;
         padding: 0;
     }
     .coolgradient {
         background: #3F5EFB;
-        background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        background: linear-gradient(60deg,rgba(242, 237, 237, 1) 0%, rgba(237, 164, 164, 1) 25%, rgba(230, 73, 73, 1) 50%, rgba(252, 170, 68, 1) 72%, rgba(255, 223, 168, 1) 100%);
         height: 20vh;
         width: 80%;
         margin-bottom: 5vh;
         border-top-right-radius: 10vh;
         border-bottom-right-radius: 10vh;
+        border-bottom: #fff 3px solid;
+        border-right: #fff 3px solid;
+    }
+    
+    .yum {
+        font-family: Pacifico;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 60px;
+        background-image: linear-gradient(60deg,rgba(242, 237, 237, 1) 0%, rgba(237, 164, 164, 1) 25%, rgba(230, 73, 73, 1) 50%, rgba(252, 170, 68, 1) 72%, rgba(255, 223, 168, 1) 100%);
+        background-clip: text;
+        color: transparent;
     }
     .coolgradient2 {
         background: #3F5EFB;
-        background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        background: linear-gradient(60deg,rgba(242, 237, 237, 1) 0%, rgba(237, 164, 164, 1) 25%, rgba(230, 73, 73, 1) 50%, rgba(252, 170, 68, 1) 72%, rgba(255, 223, 168, 1) 100%);
+
         height: 20vh;
         width: 80%;
         margin-top: 5vh;
         border-top-left-radius: 10vh;
         border-bottom-left-radius: 10vh;
         float: right;
+        border-top: #fff 3px solid;
+        border-left: #fff 3px solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Indie Flower';
+        color: #ffffff;
 
     }
     .taskitem {
@@ -69,6 +81,15 @@
     }
     label, input, button {
         font-size: 25px;
+        font-family: 'Indie Flower';
+    }
+    label {
+        margin-left: 20px;
+    }
+    input, button {
+        border-radius: 20px;
+        border-color: #dd7575;
+        color: #dd7575;
     }
     .taskitem.completed {
         text-decoration: line-through;
@@ -78,18 +99,18 @@
 </style>
 <body>
 <div class="coolgradient"></div>
-    <h1>Productivity Task Tracker</h1>
+    <div class="yum">Productivity Task Tracker</div>
     <form id="carrot" action="#" method="post">
         <label for="task">Add a new task:</label>
-        <input type="text" id="task" name="task" placeholder="enter your task here bro.">
-        <button type="submit">Add New Task</button> </form>
+        <input type="text" id="task" name="task" placeholder="enter your task here💕">
+        <button type="submit">Add</button> </form>
     <p>Click on a task to mark it as completed</p>
     <p>Click again to unmark it</p>
     <p>Right Click on a task to delete it<p>
     <ul class="tasklist">
         <li class="taskitem">Example Task 1</li>
     </ul>
-    <div class="coolgradient2"></div>
+    <div class="coolgradient2">made by Flappyfroggy on GitHub💕</div>
 </body>
 <script>
 document.querySelectorAll(".taskitem").forEach(function(taskitem) {
