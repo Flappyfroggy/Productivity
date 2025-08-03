@@ -14,8 +14,11 @@
         font-family: 'Indie Flower';
         background-color: #e77e7e;
         margin: 0;
-        padding: 20px;
-        font-size: 3vh;
+        padding: 0;
+        font-size: 25px;
+    }
+    p {
+        margin-left: 20px;
     }
     
     h1 {
@@ -24,27 +27,49 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 6vh;
+        font-size: 50px;
     }
     
     .tasklist {
         list-style-type: none;
         padding: 0;
     }
-    
+    .coolgradient {
+        background: #3F5EFB;
+        background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        height: 20vh;
+        width: 80%;
+        margin-bottom: 5vh;
+        border-top-right-radius: 10vh;
+        border-bottom-right-radius: 10vh;
+    }
+    .coolgradient2 {
+        background: #3F5EFB;
+        background: radial-gradient(circle,rgba(63, 94, 251, 1) 0%, rgba(252, 70, 107, 1) 100%);
+        height: 20vh;
+        width: 80%;
+        margin-top: 5vh;
+        border-top-left-radius: 10vh;
+        border-bottom-left-radius: 10vh;
+        float: right;
+
+    }
     .taskitem {
         background-color: #fff;
         border: 1px solid #ddd;
         margin-bottom: 10px;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 3vh;
-        
+        font-size: 25px;
+        margin-left: 20px; 
+        margin-right: 20px;
     }
-    
+    label, input, button {
+        font-size: 25px;
+    }
     .taskitem.completed {
         text-decoration: line-through;
         color: #ffffff;
@@ -52,17 +77,19 @@
     }
 </style>
 <body>
+<div class="coolgradient"></div>
     <h1>Productivity Task Tracker</h1>
     <form id="carrot" action="#" method="post">
         <label for="task">Add a new task:</label>
         <input type="text" id="task" name="task" placeholder="enter your task here bro.">
-        <button type="submit">Add New Task</button>
+        <button type="submit">Add New Task</button> </form>
     <p>Click on a task to mark it as completed</p>
     <p>Click again to unmark it</p>
     <p>Right Click on a task to delete it<p>
     <ul class="tasklist">
         <li class="taskitem">Example Task 1</li>
-    </ul> 
+    </ul>
+    <div class="coolgradient2"></div>
 </body>
 <script>
 document.querySelectorAll(".taskitem").forEach(function(taskitem) {
