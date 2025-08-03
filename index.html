@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <title>Productivity Task Tracker</title>
+</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+    body {
+        font-family: 'Indie Flower';
+        background-color: #e77e7e;
+        margin: 0;
+        padding: 20px;
+    }
+    
+    h1 {
+        color: #523b3b;
+        font-family: Pacifico;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .tasklist {
+        list-style-type: none;
+        padding: 0;
+    }
+    
+    .taskitem {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    
+    .taskitem.completed {
+        text-decoration: line-through;
+        color: #999;
+    }
+</style>
+<body>
+    <h1>Productivity Task Tracker</h1>
+    <ul class="tasklist">
+        <li class="taskitem">Task 1</li>
+        <li class="taskitem">Task 2</li>
+        <li class="taskitem">Task 3</li>
+    </ul> 
+</body>
+<script>
+document.querySelectorAll(".taskitem").forEach(function(taskitem) {
+    taskitem.addEventListener("click", function() {
+    taskitem.classList.toggle("completed");
+});
+});
+</script>
+</html>
