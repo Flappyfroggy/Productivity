@@ -113,36 +113,55 @@
     <div class="coolgradient2">made by Flappyfroggy on GitHub💕</div>
 </body>
 <script>
-document.querySelectorAll(".taskitem").forEach(function(taskitem) {
-    taskitem.addEventListener("click", function() {
-    taskitem.classList.toggle("completed");
-});
-});
-const carrot =document.getElementById("carrot")
+const tasks_key = "tasks";
+let tasks = loadTasks();
+renderTasks();
+function saveTasks() {    
+    localStorage.setItem(tasks_key, JSON.stringify(tasks));
+}
+function loadTasks() {
+    const potato = localStorage.getItem(tasks_key);
+    if (potato) {
+        return JSON.parse(potato);
+    }
+    return [];
+}
+function renderTasks() {
+    const taskList = document.querySelector(".tasklist");
+    taskList.innerHTML = "";
+    tasks.forEach(function(task, idx) {
+        const newTaskItem = document.createElement("li");
+        newTaskItem.textContent = task.text;
+        newTaskItem.className = "taskitem";
+        if (task.completed) {
+            newTaskItem.classList.add("completed");
+        }
+        newTaskItem.addEventListener("click", function() {
+            task.completed = !task.completed;
+            saveTasks();
+            renderTasks();
+        });
+        newTaskItem.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+            tasks.splice(idx, 1);
+            saveTasks();
+            renderTasks();
+        });
+        taskList.appendChild(newTaskItem);
+    });
+}
+
+const carrot = document.getElementById("carrot")
 carrot.addEventListener("submit", function(eveneteere) {
     eveneteere.preventDefault();
     const taskInput = document.getElementById("task");
     const createtask = taskInput.value.trim();
     if (createtask) {
-        const newTaskItem = document.createElement("li");
-        newTaskItem.className = "taskitem";
-        newTaskItem.textContent = createtask;
-        newTaskItem.addEventListener("click", function() {
-            newTaskItem.classList.toggle("completed");
-        newTaskItem.addEventListener("contextmenu", function(event) {
-            event.preventDefault();
-            newTaskItem.remove();
-        });
-        });
-        document.querySelector(".tasklist").appendChild(newTaskItem);
-       taskInput.value = "";
-}
-});
-    document.querySelectorAll(".taskitem").forEach(function(taskitem) {
-    taskitem.addEventListener("contextmenu", function() {
-    event.preventDefault();
-    taskitem.remove();
-});
-});
+        tasks.push({ text: createtask, completed: false });
+        saveTasks();
+        renderTasks();
+        taskInput.value = "";  
+    }
+        });     
 </script>
 </html>
