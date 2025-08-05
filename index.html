@@ -118,10 +118,39 @@
             border-radius: 20px;
         }
     }
+    .greendarkmode {
+        background-color: #1f1b24;
+        color: aliceblue;
+        .taskitem {
+            background-color: #383649;
+        }
+        label, input, button {
+            background-color: #383649;
+            color: aliceblue;
+            border-color: #b1eec3;
+        }
+        label {
+            border-radius: 20px;
+        }
+        .coolgradient, .coolgradient2 {
+            background: #f2eded;
+            background: linear-gradient(60deg,rgba(242, 237, 237, 1) 0%, rgba(236, 242, 235, 1) 0%, rgba(163, 240, 146, 1) 28%, rgba(80, 222, 153, 1) 50%, rgba(227, 252, 68, 1) 75%, rgba(213, 230, 184, 1) 100%);
+            opacity: 75%;
+        }
+        .yum {
+            background: #f2eded;
+            background: linear-gradient(60deg,rgba(242, 237, 237, 1) 0%, rgba(236, 242, 235, 1) 0%, rgba(163, 240, 146, 1) 28%, rgba(80, 222, 153, 1) 50%, rgba(227, 252, 68, 1) 75%, rgba(213, 230, 184, 1) 100%);
+            opacity: 75%;
+            background-clip: text;
+        color: transparent;
+        }
+        
+    }
     </style>
 <body>
 <div class="coolgradient"></div>
 <button onclick="darkmode()">Toggle Dark Mode</button>
+<button onclick="greendarkmode()">Toggle Green Dark Mode</button>
     <div class="yum">Productivity Task Tracker</div>
     <form id="carrot" action="#" method="post">
         <label for="task">Add a new task:</label>
@@ -137,6 +166,7 @@
 </body>
 <script>
 loadDarkMode();
+loadGreenDarkMode();
 const tasks_key = "tasks";
 let tasks = loadTasks();
 renderTasks();
@@ -178,11 +208,22 @@ function savedarkmode() {
     const darkMode = document.body.classList.contains("darkmode");
     localStorage.setItem("darkmode", darkMode);
 }
+function savegreendarkmode() {
+    const GREENDARKMODE = document.body.classList.contains("greendarkmode");
+    localStorage.setItem("greendarkmode", "GREENDARKMODE")
+}
 function loadDarkMode() {
     const darkmode = localStorage.getItem("darkmode")
     if (darkmode === "true")
     {
         document.body.classList.add("darkmode");
+    }
+}
+function loadGreenDarkMode() {
+    const greendarkmode = localStorage.getItem("greendarkmode")
+    if (greendarkmode === "true")
+    {
+        document.body.classList.add("greendarkmode");
     }
 }
 const carrot = document.getElementById("carrot")
@@ -200,6 +241,11 @@ carrot.addEventListener("submit", function(eveneteere) {
 function darkmode() {
     document.body.classList.toggle("darkmode");
     savedarkmode();
-}  
+}
+function greendarkmode() {
+    document.body.classList.toggle("greendarkmode");
+    savegreendarkmode();
+}
+
 </script>
 </html>
