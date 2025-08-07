@@ -155,6 +155,7 @@
     <form id="carrot" action="#" method="post">
         <label for="task">Add a new task:</label>
         <input type="text" id="task" name="task" placeholder="enter your task here💕">
+        <input type="date" id="date" name="date" placeholder="optional date">
         <button type="submit">Add</button> </form>
     <p>Click on a task to mark it as completed</p>
     <p>Click again to unmark it</p>
@@ -187,6 +188,9 @@ function renderTasks() {
         const newTaskItem = document.createElement("li");
         newTaskItem.textContent = task.text;
         newTaskItem.className = "taskitem";
+        if (task.date) {
+            newTaskItem.textContent += " (Due: " + task.date + ")";
+        }
         if (task.completed) {
             newTaskItem.classList.add("completed");
         }
@@ -206,11 +210,11 @@ function renderTasks() {
 }
 function savedarkmode() {
     const darkMode = document.body.classList.contains("darkmode");
-    localStorage.setItem("darkmode", darkMode);
+    localStorage.setItem("darkmode", darkMode); 
 }
 function savegreendarkmode() {
     const GREENDARKMODE = document.body.classList.contains("greendarkmode");
-    localStorage.setItem("greendarkmode", "GREENDARKMODE")
+    localStorage.setItem("greendarkmode", GREENDARKMODE)
 }
 function loadDarkMode() {
     const darkmode = localStorage.getItem("darkmode")
@@ -230,12 +234,15 @@ const carrot = document.getElementById("carrot")
 carrot.addEventListener("submit", function(eveneteere) {
     eveneteere.preventDefault();
     const taskInput = document.getElementById("task");
+    const dateInput = document.getElementById("date")
     const createtask = taskInput.value.trim();
-    if (createtask) {
-        tasks.push({ text: createtask, completed: false });
+    const createdate = dateInput.value;
+    if (createtask) { 
+        tasks.push({ text: createtask, date: createdate, completed: false });
         saveTasks();
         renderTasks();
-        taskInput.value = "";  
+        taskInput.value = "";
+        dateInput.value = "";
     }
         });
 function darkmode() {
