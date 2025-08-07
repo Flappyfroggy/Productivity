@@ -144,7 +144,23 @@
             background-clip: text;
         color: transparent;
         }
-        
+        .taskitem.pastdate {
+            background-color: rgb(250, 76, 76);
+        }
+    }
+    span {
+        color: rgb(250, 76, 76);
+        font-style: italic;
+        font-weight: bold;
+    }
+    .taskitem.tag
+    {
+        font-style: italic;
+        color: #b9fb3f;
+    }
+    .taskitem.date {
+        font-style: italic;
+        color: #ecf5a9;
     }
     </style>
 <body>
@@ -156,10 +172,12 @@
         <label for="task">Add a new task:</label>
         <input type="text" id="task" name="task" placeholder="enter your task here💕">
         <input type="date" id="date" name="date" placeholder="optional date">
+        <input type="text" id="tag" name="tag" placeholder="optional tag">
         <button type="submit">Add</button> </form>
     <p>Click on a task to mark it as completed</p>
     <p>Click again to unmark it</p>
     <p>Right Click on a task to delete it<p>
+    <p>If a task is past it's due date, it will appear <span>red</span></p>
     <ul class="tasklist">
         <li class="taskitem">Example Task 1</li>
     </ul>
@@ -193,6 +211,13 @@ function renderTasks() {
         }
         if (task.completed) {
             newTaskItem.classList.add("completed");
+        }
+        if (task.date && new Date(task.date) < new Date()) {
+            newTaskItem.classList.add("pastdate");
+        }
+        if (task.tag) {
+            newTaskItem.textContent += " [Tag: " + task.tag + "]";
+            
         }
         newTaskItem.addEventListener("click", function() {
             task.completed = !task.completed;
@@ -237,8 +262,10 @@ carrot.addEventListener("submit", function(eveneteere) {
     const dateInput = document.getElementById("date")
     const createtask = taskInput.value.trim();
     const createdate = dateInput.value;
+    const createtag = document.getElementById("tag").value.trim();
+    
     if (createtask) { 
-        tasks.push({ text: createtask, date: createdate, completed: false });
+        tasks.push({ text: createtask, date: createdate, tag: createtag, completed: false });
         saveTasks();
         renderTasks();
         taskInput.value = "";
