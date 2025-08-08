@@ -116,6 +116,9 @@
         .taskitem.date {
             color: #f7d291;
         }
+           #tasktext {
+        color: #ffffff;
+        }
     }
     .greendarkmode {
         background-color: #1f1b24;
@@ -127,6 +130,9 @@
             background-color: #383649;
             color: aliceblue;
             border-color: #b1eec3;
+        }
+           #tasktext {
+        color: #ffffff;
         }
         label {
             border-radius: 20px;
@@ -150,6 +156,9 @@
             color: rgb(238, 245, 159);
         }
     }
+       #tasktext {
+            color: #000000;
+        }
         .taskitem.pastdate  {
         background-color: rgb(250, 76, 76);
         }
@@ -177,9 +186,6 @@
     #pasta {
         color: #4f0505;
         font-weight: bold;
-    }
-    #tasktext {
-        color: #ffffff;
     }
     
     span {
@@ -229,6 +235,12 @@
         .taskitem.completed #pasta {
             background-color: #9a9090;
         }
+        #xpDisplay {
+            font-weight: bolder;
+            font-size: 30px;
+            font-family: pacifico;
+        }
+        
     </style>
 <body>
 <div class="coolgradient"></div>
@@ -252,7 +264,8 @@
     <div class="coolgradient2">made by Flappyfroggy on GitHub💕</div>
 </body>
 <script>
-let xp = 0;
+let xp = parseInt(localStorage.getItem("xp")) || 0;
+updatexp();
 loadDarkMode();
 loadGreenDarkMode();
 const tasks_key = "tasks";
@@ -305,9 +318,15 @@ function renderTasks() {
         }
         newTaskItem.addEventListener("click", function() {
             task.completed = !task.completed;
+            if (task.completed) {
+            xp += 10;
+            } else {
+            xp -= 10;
+            }
+            updatexp();
             saveTasks();
             renderTasks();
-        });
+        }); 
         newTaskItem.addEventListener("contextmenu", function(event) {
             event.preventDefault();
             tasks.splice(idx, 1);
@@ -341,6 +360,7 @@ function loadGreenDarkMode() {
 }
 function updatexp() {
     const xpDisplay = document.getElementById("xpDisplay");
+    localStorage.setItem("xp", xp);
     xpDisplay.textContent = "wow! you have " + xp + " xp.";
 }
 const carrot = document.getElementById("carrot")
@@ -351,16 +371,6 @@ carrot.addEventListener("submit", function(eveneteere) {
     const createtask = taskInput.value.trim();
     const createdate = dateInput.value;
     const createtag = document.getElementById("tag").value.trim();
-addEventListener("click", function() { 
-    task.completed = !task.completed;
-    if (task.completed) {
-    xp += 10;
-    } else {
-    xp -= 10;
-    }
-    updatexp();
-    saveTasks();
-});
         if (createtask) { 
         tasks.push({ text: createtask, date: createdate, tag: createtag, completed: false });
         saveTasks();
