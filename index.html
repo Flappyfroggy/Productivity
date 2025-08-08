@@ -144,15 +144,14 @@
         color: transparent;
         }
          .taskitem.tag {
-            color: #b9fb3f;
+            color: rgb(111, 248, 157);
         }
         .taskitem.date {
-            color: #ecf5a9;
+            color: rgb(238, 245, 159);
         }
     }
         .taskitem.pastdate  {
         background-color: rgb(250, 76, 76);
-        color: #6e1515;
         }
         .taskitem.pastdate .taskitem.tag,
         .taskitem.pastdate .taskitem.date,
@@ -164,11 +163,24 @@
         .taskitem.pastdate:hover #tasktext {
                 display: inline-block;
                 background-color: rgb(250, 76, 76);
+                border-radius: 5px;
                 color: #ffffff;
             }
+        .taskitem.pastdate:hover.taskitem.completed .taskitem.tag,
+        .taskitem.pastdate:hover.taskitem.completed .taskitem.date,
+        .taskitem.pastdate:hover.taskitem.completed #tasktext {
+        background-color: #9a9090;
+        }
         .taskitem.pastdate:hover #pasta {
             display: none;
         }
+    #pasta {
+        color: #4f0505;
+        font-weight: bold;
+    }
+    #tasktext {
+        color: #ffffff;
+    }
     
     span {
         color: rgb(250, 76, 76);
@@ -198,17 +210,25 @@
         text-decoration: line-through;
         color: #ffffff;
         background-color: #9a9090;
-        .taskitem.tag {
-            background-color: #9a9090;
-            color: #ffffff;
-            text-decoration: line-through;
-        }
-        .taskitem.date {
-            background-color: #9a9090;
-            color: #ffffff;
-            text-decoration: line-through;
-        }
     }
+        .taskitem.completed .taskitem.tag {
+            background-color: #9a9090;
+            color: #ffffff;
+            text-decoration: line-through;
+        }
+        .taskitem.completed .taskitem.date {
+            background-color: #9a9090;
+            color: #ffffff;
+            text-decoration: line-through;
+        }
+        .taskitem.completed #tasktext {
+            background-color: #9a9090;
+            color: #ffffff;
+            text-decoration: line-through;
+        }
+        .taskitem.completed #pasta {
+            background-color: #9a9090;
+        }
     </style>
 <body>
 <div class="coolgradient"></div>
@@ -250,6 +270,7 @@ function renderTasks() {
     taskList.innerHTML = "";
     tasks.forEach(function(task, idx) {
         const newTaskItem = document.createElement("li");
+        newTaskItem.id = "taskitem"
         const taskText = document.createElement("span");
         taskText.id = "tasktext";
         taskText.textContent = task.text;
@@ -270,9 +291,7 @@ function renderTasks() {
             const c = document.createElement("div");
             c.id = "pasta";
             c.className = "taskitem pastdate";
-            c.textContent = "TASK PAST DUE DATE";
-            c.style.color = "red";
-            c.style.fontWeight = "bold";
+            c.textContent = "TASK IS PAST DUE DATE!";
             newTaskItem.appendChild(c);
         }
         if (task.tag) {
