@@ -1,2 +1,2 @@
 # Productivity
-'Productivity' is a to do list tracker with the goal of allowing users to maintain high productivity and keep track of tasks they need to do. Made in VS Code utilizing HTML, CSS and JavaScript.
+'Productivity' is a slightly gamified to do list tracker made with the goal of allowing users to maintain high productivity and keep track of tasks they need to do. During this process i struggled and learnt more about javascript. Made in VS Code utilizing HTML, CSS and JS. [![Athena Award Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Faward.athena.hackclub.com%2Fapi%2Fbadge)](https://award.athena.hackclub.com?utm_source=readme)
