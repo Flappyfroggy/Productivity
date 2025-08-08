@@ -234,7 +234,7 @@
 <div class="coolgradient"></div>
 <button onclick="darkmode()">Toggle Dark Mode</button>
 <button onclick="greendarkmode()">Toggle Green Dark Mode</button>
-    <div class="yum">Productivity Task Tracker</div>
+    <div class="yum">Achievr</div>
     <form id="carrot" action="#" method="post">
         <label for="task">Add a new task:</label>
         <input type="text" id="task" name="task" placeholder="enter your task here💕">
@@ -245,11 +245,13 @@
     <p>Click again to unmark it</p>
     <p>Right Click on a task to delete it<p>
     <p>If a task is past it's due date, it will appear <span>red</span></p>
+    <p id="xpDisplay">you have 0 xp.</p>
     <ul class="tasklist">
         <li class="taskitem">Example Task 1</li>
     <div class="coolgradient2">made by Flappyfroggy on GitHub💕</div>
 </body>
 <script>
+let xp = 0;
 loadDarkMode();
 loadGreenDarkMode();
 const tasks_key = "tasks";
@@ -344,8 +346,14 @@ carrot.addEventListener("submit", function(eveneteere) {
     const createtask = taskInput.value.trim();
     const createdate = dateInput.value;
     const createtag = document.getElementById("tag").value.trim();
-    
-    if (createtask) { 
+addEventListener("click", function() { 
+    task.completed = !task.completed;
+    const xpdisplay = document.getElementById("xpDisplay");
+    let xp = Number(xpdisplay.textContent) || 0;
+    xp += 10;
+    xpdisplay.textContent = "Wow! You have " + xp; 
+});
+        if (createtask) { 
         tasks.push({ text: createtask, date: createdate, tag: createtag, completed: false });
         saveTasks();
         renderTasks();
