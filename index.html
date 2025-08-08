@@ -94,11 +94,6 @@
     button {
         margin-left: 20px;
     }
-    .taskitem.completed {
-        text-decoration: line-through;
-        color: #ffffff;
-        background-color: #9a9090;
-    }
     .darkmode {
         background-color: #1f1b24;
         color: aliceblue;
@@ -114,6 +109,12 @@
         }
         label {
             border-radius: 20px;
+        }
+        .taskitem.tag {
+            color: #dd7575;
+        }
+        .taskitem.date {
+            color: #f7d291;
         }
     }
     .greendarkmode {
@@ -142,10 +143,31 @@
             background-clip: text;
         color: transparent;
         }
-        .taskitem.pastdate {
-            background-color: rgb(250, 76, 76);
+         .taskitem.tag {
+            color: #b9fb3f;
+        }
+        .taskitem.date {
+            color: #ecf5a9;
         }
     }
+        .taskitem.pastdate  {
+        background-color: rgb(250, 76, 76);
+        color: #6e1515;
+        }
+        .taskitem.pastdate .taskitem.tag,
+        .taskitem.pastdate .taskitem.date,
+        .taskitem.pastdate #tasktext {
+            display: none;
+        }   
+        .taskitem.pastdate:hover .taskitem.tag,
+        .taskitem.pastdate:hover .taskitem.date,
+        .taskitem.pastdate:hover #tasktext {
+                display: inline-block;
+            }
+            #pasta {
+            display: none;
+        }
+    
     span {
         color: rgb(250, 76, 76);
         font-style: italic;
@@ -154,7 +176,7 @@
     .taskitem.tag
     {
         font-style: italic;
-        color: #b9fb3f;
+        color: #dd7575;
         display: inline-block;
         border-radius: 5px;
         padding: 2px 4px;
@@ -163,12 +185,27 @@
     }
     .taskitem.date {
         font-style: italic;
-        color: #ecf5a9;
+        color: #f7d291;
         display: inline-block;
         border-radius: 5px;
         padding: 2px 4px;
         vertical-align: baseline;
         line-height: 1;
+    }
+    .taskitem.completed {
+        text-decoration: line-through;
+        color: #ffffff;
+        background-color: #9a9090;
+        .taskitem.tag {
+            background-color: #9a9090;
+            color: #ffffff;
+            text-decoration: line-through;
+        }
+        .taskitem.date {
+            background-color: #9a9090;
+            color: #ffffff;
+            text-decoration: line-through;
+        }
     }
     </style>
 <body>
@@ -188,7 +225,6 @@
     <p>If a task is past it's due date, it will appear <span>red</span></p>
     <ul class="tasklist">
         <li class="taskitem">Example Task 1</li>
-    </ul>
     <div class="coolgradient2">made by Flappyfroggy on GitHub💕</div>
 </body>
 <script>
@@ -212,7 +248,9 @@ function renderTasks() {
     taskList.innerHTML = "";
     tasks.forEach(function(task, idx) {
         const newTaskItem = document.createElement("li");
-        const taskText = document.createTextNode(task.text);
+        const taskText = document.createElement("span");
+        taskText.id = "tasktext";
+        taskText.textContent = task.text;
         newTaskItem.appendChild(taskText);
         newTaskItem.className = "taskitem";
         if (task.date) {
@@ -226,14 +264,20 @@ function renderTasks() {
         }
         if (task.date && new Date(task.date) < new Date()) {
             newTaskItem.classList.add("pastdate");
+
+            const c = document.createElement("div");
+            c.id = "pasta";
+            c.className = "taskitem pastdate";
+            c.textContent = "TASK PAST DUE DATE";
+            c.style.color = "red";
+            c.style.fontWeight = "bold";
+            newTaskItem.appendChild(c);
         }
         if (task.tag) {
             const taskspan = document.createElement("span");
             taskspan.className = "taskitem tag";
             taskspan.textContent += task.tag;
             newTaskItem.appendChild(taskspan);
-            
-            
         }
         newTaskItem.addEventListener("click", function() {
             task.completed = !task.completed;
