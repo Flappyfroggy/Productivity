@@ -235,7 +235,7 @@
         .taskitem.completed #pasta {
             background-color: #9a9090;
         }
-        #xpDisplay {
+        #xpDisplay, #xplevelup {
             font-weight: bolder;
             font-size: 30px;
             font-family: pacifico;
@@ -257,10 +257,11 @@
     <p>Click again to unmark it</p>
     <p>Right Click on a task to delete it<p>
     <p>If a task is past it's due date, it will appear <span>red</span></p>
-    <p>every time you complete a task you get 10 xp</p>
+    <p>every time you complete a task you get 10 xp, every 50 xp you level up!</p>
     <p id="xpDisplay">you have 0 xp.</p>
+    <p id="xplevelup">you are at level 1</p>
     <ul class="tasklist">
-        <li class="taskitem">Example Task 1</li></ul>
+    <li class="taskitem">Example Task 1</li></ul>
     <div class="coolgradient2">made by Flappyfroggy on GitHub💕</div>
 </body>
 <script>
@@ -360,8 +361,45 @@ function loadGreenDarkMode() {
 }
 function updatexp() {
     const xpDisplay = document.getElementById("xpDisplay");
+    const xplevelup = document.getElementById("xplevelup");
     localStorage.setItem("xp", xp);
     xpDisplay.textContent = "wow! you have " + xp + " xp.";
+    if (xp > 49) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. good job!";
+        xplevelup.textContent = "you leveled up! you are now level 2!";
+    }
+    if (xp > 99) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. amazing!";
+        xplevelup.textContent = "you leveled up! you are now level 3!";
+    }
+    if (xp > 149) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. incredible!";
+        xplevelup.textContent = "you leveled up! you are now level 4!";
+    }
+    if (xp > 199) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. fantastic!";
+        xplevelup.textContent = "you leveled up! you are now level 5!";
+    }
+    if (xp > 249) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. outstanding!";
+        xplevelup.textContent = "you leveled up! you are now level 6!";
+    }
+    if (xp > 299) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. phenomenal!";
+        xplevelup.textContent = "you leveled up! you are now level 7!";
+    }
+    if (xp > 349) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. exceptional!";
+        xplevelup.textContent = "you leveled up! you are now level 8!";
+    }
+    if (xp > 399) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. unbelievable!";
+        xplevelup.textContent = "you leveled up! you are now level 9!";
+    }
+    if (xp > 449) {
+        xpDisplay.textContent = "wow! you have " + xp + " xp. extraordinary!";
+        xplevelup.textContent = "you leveled up! you are now level 10! congratulations, you reached the max level!";
+    }
 }
 const carrot = document.getElementById("carrot")
 carrot.addEventListener("submit", function(eveneteere) {
